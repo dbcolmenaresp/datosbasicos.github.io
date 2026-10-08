@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos Básicos y Nativos en Programación - Ingeniería de Sistemas</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent-color: #38bdf8;
+      --accent-hover: #0284c7;
+      --subtext-color: #94a3b8;
+      --code-bg: #090d16;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Container de Diapositivas */
+    .slides-container {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid #334155;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Estilos de Contenido */
+    h1 {
+      font-size: 2.2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #e2e8f0;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p, li {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      margin-bottom: 0.8rem;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+    }
+
+    .code-box {
+      background-color: var(--code-bg);
+      border-left: 4px solid var(--accent-color);
+      padding: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      color: #7dd3fc;
+      border-radius: 4px;
+      margin: 1rem 0;
+      white-space: pre-wrap;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background-color: #0f172a;
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    /* Navegación */
+    .controls {
+      height: 70px;
+      background-color: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      border-top: 1px solid #1e293b;
+    }
+
+    .btn {
+      background-color: var(--accent-color);
+      color: #0f172a;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+      color: #fff;
+    }
+
+    .btn:disabled {
+      background-color: #334155;
+      color: #64748b;
+      cursor: not-allowed;
+    }
+
+    .slide-number {
+      color: var(--subtext-color);
+      font-weight: bold;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .slide { padding: 1.5rem; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slides-container">
+
+    <!-- Diapositiva 1: Portada / Introducción -->
+    <div class="slide active">
+      <div>
+        <h1>Datos Básicos y Nativos en Programación</h1>
+        <h2>Fundamentos de Construcción de Software</h2>
+        <p style="margin-top: 1.5rem;"><strong>Audiencia:</strong> Estudiantes de Ingeniería de Sistemas</p>
+        <p><strong>Objetivo:</strong> Comprender la naturaleza, representación en memoria y manipulación eficiente de los datos primitivos en la arquitectura del computador[cite: 1, 2].</p>
+      </div>
+      <div class="card">
+        <p><em>"En las computadoras, todo se reduce a información manipulada en niveles de abstracción. El conocimiento del dato nativo marca la diferencia entre código funcional y código de alto rendimiento."</em></p>
+      </div>
+    </div>
+
+    <!-- Diapositiva 2: Introducción a los datos básicos -->
+    <div class="slide">
+      <div>
+        <h1>1. Introducción a los Datos Básicos</h1>
+        <p>Las computadoras fueron concebidas para resolver cálculos numéricos y procesar información[cite: 1]. Sin embargo, la máquina no entiende palabras, letras ni símbolos directamente; solo procesa impulsos eléctricos traducidos a dígitos binarios[cite: 1].</p>
+        <ul>
+          <li><strong>Tipos Básicos o Nativos:</strong> Son los elementos fundamentales provistos e integrados por un lenguaje de programación[cite: 1].</li>
+          <li><strong>Bloques de Construcción:</strong> Sirven como base para estructurar algoritmos y construir datos compuestos más complejos (arreglos, registros, clases)[cite: 1, 2].</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Diapositiva 3: Definición de datos -->
+    <div class="slide">
+      <div>
+        <h1>2. Definición de Datos</h1>
+        <p>Un <strong>dato</strong> es una representación abstracta de un atributo o entidad del mundo real con la que opera la computadora[cite: 2].</p>
+        <div class="grid-2">
+          <div class="card">
+            <h2>Tipo de Dato</h2>
+            <p>Es un conjunto específico de valores junto con un conjunto de operaciones válidas que actúan sobre ellos[cite: 1, 2].</p>
+          </div>
+          <div class="card">
+            <h2>Variable vs. Constante</h2>
+            <p><strong>Variable:</strong> Espacio reservado en memoria cuyo contenido puede cambiar durante la ejecución[cite: 1, 2].</p>
+            <p><strong>Constante:</strong> Valor fijo que permanece inmutable durante el ciclo de vida del programa[cite: 2].</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diapositiva 4: Tipos de datos básicos -->
+    <div class="slide">
+      <div>
+        <h1>3. Tipos de Datos Básicos (Primitivos)</h1>
+        <p>Los lenguajes de programación estándar ofrecen varios datos nativos predefinidos[cite: 1]:</p>
+        <div class="grid-2">
+          <div class="card">
+            <h2>Numéricos</h2>
+            <ul>
+              <li><strong>Enteros (Integer):</strong> Sin parte decimal[cite: 1].</li>
+              <li><strong>Reales / Flotantes (Float/Double):</strong> Con componente fraccionario[cite: 1].</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h2>Texto y Lógica</h2>
+            <ul>
+              <li><strong>Carácter (Char):</strong> Símbolos o letras individuales[cite: 1, 2].</li>
+              <li><strong>Cadena (String):</strong> Secuencias de caracteres[cite: 1, 2].</li>
+              <li><strong>Booleano (Boolean):</strong> Valores lógicos de verdad[cite: 1].</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diapositiva 5: Datos binarios y representación en la memoria -->
+    <div class="slide">
+      <div>
+        <h1>4. Datos Binarios y Representación Interna</h1>
+        <p>El <strong>Bit</strong> (Binary Digit) es la unidad mínima de información que la máquina puede procesar (valores <code>0</code> o <code>1</code>)[cite: 1].</p>
+        <ul>
+          <li>Un conjunto de 8 bits conforma 1 <strong>Byte</strong>[cite: 1].</li>
+          <li><strong>Proceso de Conversión:</strong> Cuando un usuario ingresa datos, se receptan en forma de cadena y las rutinas del compilador/traductor los transforman a notación binaria para almacenarlos en memoria[cite: 1, 2].</li>
+        </ul>
+        <div class="code-box">Ejemplo en memoria (16 bits / 2 Bytes):
+1000 1110 0101 1011[cite: 1, 3]</div>
+      </div>
+    </div>
+
+    <!-- Diapositiva 6: Números Enteros -->
+    <div class="slide">
+      <div>
+        <h1>5. Números Enteros (Integer)</h1>
+        <p>Representan un subconjunto finito de los números enteros matemáticos (sin decimales)[cite: 1]. Se dividen según el ancho de bits y el uso de signo[cite: 1]:</p>
+        <ul>
+          <li><strong>Modificadores de tamaño:</strong> Short (16 bits), Int (32 bits), Long (64 bits)[cite: 1, 3].</li>
+          <li><strong>Signo:</strong> <code>signed</code> (positivos y negativos) o <code>unsigned</code> (solo valores &ge; 0)[cite: 1, 3].</li>
+        </ul>
+        <div class="card" style="margin-top: 1rem;">
+          <p><strong>Rango típico (16-bit Signed):</strong> -32,768 a +32,767[cite: 1].</p>
+          <p><strong>Rango típico (16-bit Unsigned):</strong> 0 a 65,535[cite: 1].</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diapositiva 7: Números de Coma Flotante -->
+    <div class="slide">
+      <div>
+        <h1>6. Números de Coma Flotante (Float / Double)</h1>
+        <p>Permiten almacenar valores reales con parte decimal o fraccionaria mediante notación científica[cite: 1].</p>
+        <ul>
+          <li><strong>Estructura:</strong> Divididos en <i>Mantisa</i> (parte decimal) y <i>Exponente</i> (potencia)[cite: 1].</li>
+          <li><strong>Precisión según el Estándar IEEE 754:</strong>
+            <ul>
+              <li><code>float</code> (Simple Precisión): ~4 bytes (32 bits)[cite: 3]. Rango: ~3.4 x 10<sup>38</sup>[cite: 1, 3].</li>
+              <li><code>double</code> (Doble Precisión): ~8 bytes (64 bits)[cite: 3]. Rango: ~1.7 x 10<sup>308</sup>[cite: 1, 3].</li>
+            </ul>
+          </li>
+        </ul>
+        <p style="margin-top:0.5rem;"><em>Nota técnica:</em> Tienen precisión limitada debido a la representación binaria fraccionaria, por lo que comparaciones directas de igualdad deben manejarse con precaución[cite: 2].</p>
+      </div>
+    </div>
+
+    <!-- Diapositiva 8: Caracteres -->
+    <div class="slide">
+      <div>
+        <h1>7. Caracteres (Char)</h1>
+        <p>Representa un único símbolo, letra, dígito o carácter especial del mapa de caracteres del sistema[cite: 1, 2].</p>
+        <ul>
+          <li>Suelen ser delimitados por comillas simples (ejemplo: <code>'A'</code>, <code>'9'</code>, <code>'%'</code>)[cite: 1, 2].</li>
+          <li>Ocupan generalmente 1 Byte (8 bits) de memoria[cite: 1].</li>
+          <li><strong>Codificación Estándar:</strong>
+            <ul>
+              <li><strong>ASCII:</strong> Codifica caracteres asignando valores numéricos de 0 a 127/255[cite: 1, 3].</li>
+              <li><strong>Unicode (UTF-8 / UTF-16):</strong> Extensión para admitir múltiples lenguajes e íconos globales[cite: 1].</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Diapositiva 9: Cadenas de Caracteres -->
+    <div class="slide">
+      <div>
+        <h1>8. Cadenas de Caracteres (String)</h1>
+        <p>Es una secuencia ordenada y finita de caracteres delimitada por comillas[cite: 1, 2].</p>
+        <ul>
+          <li><strong>Naturaleza:</strong> Aunque muchos lenguajes modernos ofrecen <code>String</code> como tipo de dato integrado, internamente se maneja como un arreglo (vector) de caracteres[cite: 1, 2].</li>
+          <li><strong>Carácter Nulo / Secuencias de Escape:</strong> En lenguajes de bajo nivel como C, la terminación de la cadena se marca mediante <code>'\0'</code>[cite: 3]. Suelen requerir secuencias de escape como <code>\n</code> (salto de línea)[cite: 1].</li>
+        </ul>
+        <div class="code-box">Ejemplo de asignación:
+string nombre = "Ingeniería de Sistemas";[cite: 2]</div>
+      </div>
+    </div>
+
+    <!-- Diapositiva 10: Booleanos -->
+    <div class="slide">
+      <div>
+        <h1>9. Datos Booleanos (Lógicos)</h1>
+        <p>Representan estados lógicos de verdad[cite: 1]. Solo pueden tomar uno de dos valores[cite: 1]:</p>
+        <div class="grid-2">
+          <div class="card">
+            <h2>Valores Permitidos</h2>
+            <ul>
+              <li><code>true</code> (Verdadero / 1)[cite: 1]</li>
+              <li><code>false</code> (Falso / 0)[cite: 1]</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h2>Operadores Lógicos</h2>
+            <ul>
+              <li><strong>AND (&& / y):</strong> Conjunción[cite: 2]</li>
+              <li><strong>OR (|| / o):</strong> Disyunción[cite: 2]</li>
+              <li><strong>NOT (! / no):</strong> Negación[cite: 2]</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top: 1rem;">Fundamental para el control de flujo con condicionales y ciclos en los algoritmos[cite: 1, 2].</p>
+      </div>
+    </div>
+
+    <!-- Diapositiva 11: Importancia para la eficiencia -->
+    <div class="slide">
+      <div>
+        <h1>10. Importancia de los Tipos de Datos en la Eficiencia</h1>
+        <p>Elegir adecuadamente el tipo de dato es indispensable para el ingeniero de sistemas[cite: 1]:</p>
+        <ul>
+          <li><strong>Optimización de Memoria RAM:</strong> Utilizar un <code>double</code> de 8 bytes cuando basta un <code>short</code> de 2 bytes malgasta recursos en ejecuciones masivas[cite: 1, 3].</li>
+          <li><strong>Rendimiento del Procesador (CPU):</strong> Las operaciones con enteros son nativamente más rápidas a nivel de hardware que los cálculos en coma flotante.</li>
+          <li><strong>Prevención de Errores Críticos:</strong> Evita problemas de desbordamiento (<i>overflow</i>) o pérdidas de precisión en operaciones matemáticas exactas[cite: 2].</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Diapositiva 12: Conclusiones -->
+    <div class="slide">
+      <div>
+        <h1>11. Conclusiones</h1>
+        <ul>
+          <li>Los datos nativos son los bloques elementales que abstraen el hardware para poder desarrollar software funcional[cite: 1, 2].</li>
+          <li>Todo tipo de dato se reduce a una representación binaria en la memoria interna del equipo[cite: 1].</li>
+          <li>El conocimiento detallado del ancho en bits, formato de almacenamiento y dominio de valores permite escribir sistemas robustos, seguros y eficientes[cite: 1, 3].</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Diapositiva 13: Llamada a la acción y despedida -->
+    <div class="slide">
+      <div>
+        <h1>12. ¡Hora de Codificar!</h1>
+        <h2>Llamada a la Acción</h2>
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <p><strong>Reto para el estudiante:</strong> Inspecciona tu lenguaje de programación favorito (C++, Java, Python, Rust, etc.) e investiga los bytes exactos utilizados por cada tipo nativo usando comandos de reflexión o de inspección de memoria (como <code>sizeof</code> en C++)[cite: 1, 3].</p>
+        </div>
+        <h2>¡Gracias por su atención!</h2>
+        <p>¿Preguntas o comentarios?</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Barra de Controles -->
+  <div class="controls">
+    <button class="btn" id="prevBtn" onclick="changeSlide(-1)">Anterior</button>
+    <span class="slide-number" id="slideNum">1 / 13</span>
+    <button class="btn" id="nextBtn" onclick="changeSlide(1)">Siguiente</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slideNum = document.getElementById('slideNum');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      slideNum.textContent = `${currentSlide + 1} / ${slides.length}`;
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === slides.length - 1;
+    }
+
+    function changeSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = 0;
+      if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+      updateSlides();
+    }
+
+    // Permitir navegación con las flechas del teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        if (currentSlide < slides.length - 1) changeSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        if (currentSlide > 0) changeSlide(-1);
+      }
+    });
+
+    updateSlides();
+  </script>
+</body>
+</html>
